@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Newsletter</title>
+</head>
+<body>
+    <h1>Add Newsletter</h1>
+    <form action="/newsletters" method="POST">
+        <label>Topic:</label>
+        <input type="text" name="topic" required>
+        <label>Content:</label>
+        <textarea name="content" required></textarea>
+        <label>Subscribers:</label>
+        <select name="subscribers" multiple required>
+            <% subscribers.forEach(subscriber => { %>
+                <option value="<%= subscriber._id %>"><%= subscriber.name %> - <%= subscriber.email %></option>
+            <% }); %>
+        </select>
+        <button type="submit">Add Newsletter</button>
+    </form>
+</body>
+</html>

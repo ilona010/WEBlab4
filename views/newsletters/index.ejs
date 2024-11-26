@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Newsletters</title>
+</head>
+<body>
+    <h1>Newsletters</h1>
+    <a href="/newsletters/add">Add New Newsletter</a>
+    <ul>
+        <% newsletters.forEach(newsletter => { %>
+            <li>
+                <h3><%= newsletter.topic %></h3>
+                <p><%= newsletter.content %></p>
+                <p>Sent on: <%= newsletter.dateSent.toDateString() %></p>
+                <h4>Subscribers:</h4>
+                <ul>
+                    <% newsletter.subscribers.forEach(subscriber => { %>
+                        <li><%= subscriber.name %> - <%= subscriber.email %></li>
+                    <% }); %>
+                </ul>
+                <a href="/newsletters/edit/<%= newsletter._id %>">Edit</a>
+                <form action="/newsletters/<%= newsletter._id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subscribers</title>
+</head>
+<body>
+    <h1>Subscribers</h1>
+    <a href="/subscribers/add">Add New Subscriber</a>
+    <ul>
+        <% subscribers.forEach(subscriber => { %>
+            <li>
+                <h3><%= subscriber.name %></h3>
+                <p>Email: <%= subscriber.email %></p>
+                <p>Account: <%= subscriber.account %></p>
+                <a href="/subscribers/edit/<%= subscriber._id %>">Edit</a>
+                <form action="/subscribers/<%= subscriber._id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>

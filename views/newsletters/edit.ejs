@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Newsletter</title>
+</head>
+<body>
+    <h1>Edit Newsletter</h1>
+    <form action="/newsletters/<%= newsletter._id %>?_method=PUT" method="POST">
+        <label>Topic:</label>
+        <input type="text" name="topic" value="<%= newsletter.topic %>" required>
+        <label>Content:</label>
+        <textarea name="content" required><%= newsletter.content %></textarea>
+        <label>Subscribers:</label>
+        <select name="subscribers" multiple required>
+            <% subscribers.forEach(subscriber => { %>
+                <option value="<%= subscriber._id %>" <%= newsletter.subscribers.map(s => s._id.toString()).includes(subscriber._id.toString()) ? 'selected' : '' %>>
+                    <%= subscriber.name %> - <%= subscriber.email %>
+                </option>
+            <% }); %>
+        </select>
+        <button type="submit">Update Newsletter</button>
+    </form>
+</body>
+</html>
